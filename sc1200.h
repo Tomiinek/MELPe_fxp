@@ -19,15 +19,7 @@
 #ifndef  _SC1200_H_
 #define  _SC1200_H_
 
-#ifdef __arm__
-	#define ARM_MATH_CM4
-	#define __FPU_PRESENT 1
-
-	#include <arm_math.h>
-	#include <assert.h>
-#else
-	#include <stdint.h>					/* int32_t is 32 bits on LP64 too, unlike long */
-#endif
+#include <stdint.h>
 
 /* =================== */
 /* Definition of Types */
