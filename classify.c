@@ -170,7 +170,7 @@ void classify(int16_t inbuf[], classParam *classStat, int16_t autocorr[])
 
 			L_temp = L_shl(L_temp, 2);
 
-			sigbuf_out[j] = round(L_temp);
+			sigbuf_out[j] = round16(L_temp);
 		}
 		v_equ(&(bpfdel[2*i]), &(sigbuf_in[sigbuf_len]), BPF_ORD/3);
 

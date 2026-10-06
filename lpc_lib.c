@@ -143,12 +143,12 @@ void lpc_acor(int16_t input[], const int16_t win_cof[],
 		temp = norm_s(extract_h(L_temp));
 		L_temp = L_shl(L_temp, temp);
 		norm_var = add(norm_var, temp);
-		autocorr[0] = round(L_temp);
+		autocorr[0] = round16(L_temp);
 
 		/* Multiply by 1/autocorr[0] for full normalization */
 		scale_fact = divide_s(ALMOST_ONE_Q14, autocorr[0]);
 		L_temp = L_shl(L_mpy_ls(L_temp, scale_fact), 1);
-		autocorr[0] = round(L_temp);
+		autocorr[0] = round16(L_temp);
 
 	} else {
 		norm_var = 0;
@@ -169,7 +169,7 @@ void lpc_acor(int16_t input[], const int16_t win_cof[],
 		/* Lag windowing */
 		L_temp = L_mpy_ls(L_temp, lagw_cof[j - 1]);
 
-		autocorr[j] = round(L_temp);
+		autocorr[j] = round16(L_temp);
 	}
 	v_free(inputw);
 }
@@ -575,8 +575,8 @@ int16_t lpc_pred2lsp(int16_t lpc[], int16_t lsf[], int16_t order)
 	/* for these indices.                                                     */
 
 	for (i = 0; i <= p2; i++){
-		p_cof[i] = round(L_p_cof[i]);                         /* p_cof in Q10 */
-		q_cof[i] = round(L_q_cof[i]);                         /* q_cof in Q10 */
+		p_cof[i] = round16(L_p_cof[i]);                         /* p_cof in Q10 */
+		q_cof[i] = round16(L_q_cof[i]);                         /* q_cof in Q10 */
 	}
 
 	/* Find root frequencies of LSP polynomials */
@@ -914,7 +914,7 @@ int16_t lpc_syn(int16_t x[], int16_t y[], int16_t a[], int16_t order,
 			accum = L_msu(accum, y[j - i], a[i - 1]);
 		/* Round off output */
 		accum = L_shl(accum, 3);
-		y[j] = round(accum);
+		y[j] = round16(accum);
 	}
 	return(0);
 }

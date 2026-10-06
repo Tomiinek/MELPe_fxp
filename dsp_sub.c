@@ -76,7 +76,7 @@ void envelope(int16_t input[], int16_t prev_in, int16_t output[],
 		L_temp = L_mac(L_temp, C1_Q14, output[i - 1]);
 		L_temp = L_mac(L_temp, C2_Q14, output[i - 2]);
 		L_temp = L_shl(L_temp, 1);
-		output[i] = round(L_temp);
+		output[i] = round16(L_temp);
 
 		prev_abs = curr_abs;
 	}
@@ -629,7 +629,7 @@ void polflt(int16_t input[], int16_t coeff[], int16_t output[],
 			accum = L_msu(accum, output[i - j], coeff[j]);
 		/* Round off output */
 		accum = L_shl(accum, 3);
-		output[i] = round(accum);
+		output[i] = round16(accum);
 	}
 }
 
@@ -653,7 +653,7 @@ void zerflt(int16_t input[], const int16_t coeff[], int16_t output[],
 			accum = L_mac(accum, input[i - j], coeff[j]);
 		/* Round off output */
 		accum = L_shl(accum, 3);
-		output[i] = round(accum);
+		output[i] = round16(accum);
 	}
 }
 
@@ -679,7 +679,7 @@ void zerflt_Q(int16_t input[], const int16_t coeff[], int16_t output[],
 			accum = L_mac(accum, input[i - j], coeff[j]);
 		/* Round off output */
 		accum = L_shl(accum, scale);
-		output[i] = round(accum);
+		output[i] = round16(accum);
 	}
 }
 
@@ -726,7 +726,7 @@ void iir_2nd_d(int16_t input[], const int16_t den[], const int16_t num[],
 
 		/* round off result */
 		accum = L_shl(accum, 1);
-		output[i] = round(accum);
+		output[i] = round16(accum);
 	}
 }
 
@@ -761,7 +761,7 @@ void iir_2nd_s(int16_t input[], const int16_t den[], const int16_t num[],
 		delin[0] = input[i];
 
 		/* round off result */
-		output[i] = round(accum);
+		output[i] = round16(accum);
 
 		/* update output delay buffer */
 		delout[1] = delout[0];

@@ -228,6 +228,6 @@ void idft_real(int16_t real[], int16_t signal[], int16_t length)
 			if (k >= length)
 				k = sub(k, length);
 		}
-		signal[i] = round(L_temp);
+		signal[i] = round16(L_temp);
 	}
 }

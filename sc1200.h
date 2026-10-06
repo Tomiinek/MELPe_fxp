@@ -26,21 +26,7 @@
 	#include <arm_math.h>
 	#include <assert.h>
 #else
-	#ifndef int32_t
-	typedef long int		int32_t;				/* 32 bit "accumulator" (L_*) */
-	#endif
-
-	#ifndef int16_t
-	typedef short int		int16_t;				/* 16 bit "register" (sw*) */
-	#endif
-
-	#ifndef uint16_t
-	typedef unsigned short	uint16_t;				/* 16 bit unsigned data */
-	#endif
-
-	#ifndef uint32_t
-	typedef unsigned long	uint32_t;				/* 32 bit unsigned data */
-	#endif
+	#include <stdint.h>					/* int32_t is 32 bits on LP64 too, unlike long */
 #endif
 
 /* =================== */

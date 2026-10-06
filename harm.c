@@ -122,7 +122,7 @@ static void realIDFT(int16_t mag[], int16_t phase[], int16_t signal[],
 		/* It might take some proofs, but mag[] is already weighted by w      */
 		/* (which is inversely proportional to length) and L_temp here never  */
 		/* overflows a int16_t.                                             */
-		signal[i] = round(L_temp);
+		signal[i] = round16(L_temp);
 		k = k;
 	}
 }

@@ -75,7 +75,7 @@ Secretariat fax: +33 493 65 47 16.
  *		 negate()
  *		 norm_l()
  *		 norm_s()
- *		 round()
+ *		 round16()
  *		 saturate()
  *		 shift_r()
  *		 shl()
@@ -394,7 +394,7 @@ Secretariat fax: +33 493 65 47 16.
 // *
 // *************************************************************************/
 
-//int16_t round(int32_t L_var1)
+//int16_t round16(int32_t L_var1)
 //{
 //	int32_t	L_Prod;
 //	int16_t	var2;
@@ -1651,7 +1651,7 @@ int16_t shift_r(int16_t var1, int16_t var2)
 //{
 //	int16_t	swOut;
 
-//	swOut = round(L_sub(L_var3, L_mult(var1, var2)));
+//	swOut = round16(L_sub(L_var3, L_mult(var1, var2)));
 //	return (swOut);
 //}
 

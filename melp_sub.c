@@ -479,10 +479,10 @@ void noise_est(int16_t gain, int16_t *noise_gain, int16_t up,
 	L_noise_gain = L_deposit_h(*noise_gain);           /* L_noise_gain in Q24 */
 	L_temp = L_shl(L_deposit_l(up), 5);
 	L_temp = L_add(L_noise_gain, L_temp);
-	temp1 = round(L_temp);
+	temp1 = round16(L_temp);
 	L_temp = L_shl(L_deposit_l(down), 7);
 	L_temp = L_add(L_noise_gain, L_temp);
-	temp2 = round(L_temp);
+	temp2 = round16(L_temp);
 
 	if (gain > temp1)
 		*noise_gain = temp1;

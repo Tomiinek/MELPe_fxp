@@ -695,7 +695,7 @@ static int16_t	WeightedMSE(int16_t n, int16_t weight[],
 		distortion = L_mac(distortion, weight[i], temp);               /* Q27 */
 	}
 
-	if (round(distortion) >= max_dMin)      /* if this situation takes place, */
+	if (round16(distortion) >= max_dMin)      /* if this situation takes place, */
 		return(SW_MAX);                    /* distortion will exceed max_dMin */
                                                          /* and we can leave. */
 
@@ -707,7 +707,7 @@ static int16_t	WeightedMSE(int16_t n, int16_t weight[],
 		distortion = L_mac(distortion, weight[i], temp);               /* Q27 */
 	}
 
-	temp = round(distortion);
+	temp = round16(distortion);
 	return(temp);
 }
 

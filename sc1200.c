@@ -58,10 +58,17 @@ static void		printHelpMessage(char *argv[]);
 static char *cmd_line[] = {"melpe", "-i", "test_in.raw", "-o", "test_out.raw", 0};
 
 extern int main_cmd(int argc, char *argv[]);
+#if defined(__unix__) || defined(__APPLE__)
+int main(int argc, char *argv[])
+{
+	return main_cmd(argc, argv);
+}
+#else
 int main()
 {
 	main_cmd(5, cmd_line);
 }
+#endif
 
 
 /****************************************************************************

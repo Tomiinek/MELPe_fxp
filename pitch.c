@@ -129,7 +129,7 @@ static void lpfilt(int16_t inbuf[], int16_t lpbuf[], int16_t len)
 			/*	sum += lpbuf[PIT_COR_LEN - len + i - j - 1] * lpar[j]; */
 			L_sum= L_mac(L_sum, lpbuf[PIT_COR_LEN-len+i-j-1], lpar[j]); /* Q0 */
 		}
-		lpbuf[PIT_COR_LEN - len + i] = round(L_sum);                    /* Q0 */
+		lpbuf[PIT_COR_LEN - len + i] = round16(L_sum);                    /* Q0 */
 	}
 }
 
@@ -161,13 +161,13 @@ static void ivfilt(int16_t ivbuf[], int16_t lpbuf[], int16_t len)
 		L40_sum = L40_mac(L40_sum, lpbuf[i], lpbuf[i]);
 	shift = norm32(L40_sum);
 	L_temp = (int32_t) L40_shl(L40_sum, shift);
-	r_coeff[0] = round(L_temp);						/* normalized r0 */
+	r_coeff[0] = round16(L_temp);						/* normalized r0 */
 	for (i = 1; i < 3; i++){
 		L40_sum = 0;
 		for (j = i; j < PIT_COR_LEN; j++)
 			L40_sum = L40_mac(L40_sum, lpbuf[j], lpbuf[j-i]);
 		L_temp = (int32_t) L40_shl(L40_sum, shift);
-		r_coeff[i] = round(L_temp);
+		r_coeff[i] = round16(L_temp);
 	}
 
 	/* Now compute pc1 and pc2 */
@@ -203,7 +203,7 @@ static void ivfilt(int16_t ivbuf[], int16_t lpbuf[], int16_t len)
 		L_temp = L_shl(L_deposit_l(lpbuf[PIT_COR_LEN-len+i]), 13);
 		L_temp = L_sub(L_temp, L_mult(pc1, lpbuf[PIT_COR_LEN-len+i-1]));
 		L_temp = L_sub(L_temp, L_mult(pc2, lpbuf[PIT_COR_LEN-len+i-2]));
-		ivbuf[PIT_COR_LEN-len+i] = round(L_shl(L_temp, 3));
+		ivbuf[PIT_COR_LEN-len+i] = round16(L_shl(L_temp, 3));
 	}
 }
 
